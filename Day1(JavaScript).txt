@@ -1,0 +1,196 @@
+                                                                          ASSIGNMENT-1
+                                                                         **************
+
+1) Write JS code to display all the prime numbers between 5 and 50. Log the output to the browser console.
+
+let number;
+let divider,flag;
+for( number=5;number<=50 ;number++)
+{
+    for(divider=2;divider<number;divider++)
+    {
+
+    
+    if(number%divider==0)
+    {
+        flag==1;
+        break;
+    }
+    else{
+        flag=0;
+        console.log("prime number are:" + number);
+        break;
+
+    }
+
+
+
+    }
+
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------------------    
+
+2) Write JS code to reverse the digits of a number. Store the number in a variable
+
+let reverse=0,rem;
+number = window.prompt('enter a multi digit number')
+while(number!==0)
+{
+    rem = number % 10;
+    reverse = (reverse * 10) + rem;
+    number = parseInt(number / 10);
+    
+}
+console.log("reverse = " + reverse);
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3) Write JS code to reverse a string. Store the string in a variable.
+
+let word, newWord;                              //variabword for storing input from user and newWord to store reversed word
+word = String(prompt("enter the string"));
+
+newWord=word.split("").reverse().join("");      // first word will be splitted using inbuilt split function . secondly, splitted word will be reverse and finally we joi all the splitted words to rejoin using inbuilt function.
+
+console.log("reverse of "+ word + " is = "+ newWord); // printing the reversed word.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+4) Write JS code to create an array of 10 numbers. Find the first two maximum numbers in the array
+
+let first = -1 , second = -1;
+let arr = [500,66,100,99,33,200,4]
+
+for(let i = 0; i <= arr.length-1; i++){
+    if(arr[i] > first){
+        second = first;
+        first = arr[i];
+    }
+    else if( arr[i] > second && arr[i] != first){
+        second = arr[i];
+    }
+}
+console.log(first);
+console.log(second);
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+5) Write JS code to sort the array created in assignment 4 in a reverse order
+
+let arr = [500,66,100,99,33,200,4];
+let reverseArr=console.log(arr.reverse())
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+6) Write JS code to find the sum of all even numbers in an array of 10 numbers. In case there are no even numbers, log a message to the browser console saying No even numbers found. 
+
+array = [23, 17, 16, 32, 7, 12, 27, 46, 16, 29];
+
+        function evenNum(arr1) {
+
+            result = 0;
+
+            for (let i = 0; i < arr1.length; i++) {
+
+                if (arr1[i] % 2 == 0) {
+
+                    result = result + arr1[i];
+
+                }
+
+            }
+
+            if (result == 0) {
+
+                console.log("No even numbers found");
+
+            }
+
+            return result
+
+        }
+
+        console.log(evenNum(array));
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+7) Write JS code to find the factorial of each number inside an array of 5 elements. The factorial of each number must then be stored in another array of the same size. Print the result array on the console
+
+function factorial(n){
+    let answer = 1;
+    if (n == 0 || n == 1){
+      return answer;
+    }else{
+      for(var i = n; i >= 1; i--){
+        answer = answer * i;
+      }
+      return answer;
+    }  
+  }
+  let initialNumber=[];
+  let finalNumber=[];
+  for (let index = 0; index < 5; index++) {
+    initialNumber[index] = prompt('enter the numbers')
+    console.log('numbers before factorial are : ' + initialNumber )
+  }
+
+  for (let index2 = 0; index2 < 5; index2++) {
+     finalNumber[index2] = factorial(initialNumber[index2])
+     console.log("after factorial" +finalNumber)
+  }
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+8) Write JS code to find the number of vowels in the string CITIUSTECH. If the vowel is repeated, it must be counted as 1. 
+
+
+let word =  String(prompt('enter a word'))
+let capWord = word.toUpperCase();
+let vowels = ["A","E","I","O","U"];
+let counter=0;
+let partition = capWord.split("");
+
+for(let i=0; i< capWord.length; i++){
+    for (let j=0; j<vowels.length; j++){
+        if(capWord[i]== vowels[j]){
+             counter++;
+        
+            }
+
+    }
+}
+
+console.log("vowels present in " + word + " are: " + counter);
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+9) Write JS code to create an array of 5 strings. Convert the last character of each string to uppercase and store the output in the same array. Print the final array
+
+words = ['sowjanya','akhila','bhargavireddy','sai sree','prasanna'];
+function question(arr1)
+{
+    for(let i=0;i<arr1.length;i++)
+    {
+        arr1[i]=arr1[i].slice(0,arr1[i].length-1) + arr1[i].slice(arr1[i].length-1).toUpperCase();
+    }
+    document.write(arr1);
+}
+question(words);
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+10) Write JS code to determine how many digits are repeated in the number 7312140905. 
+
+function countRepeatingDigit(N){
+    var result=0;
+    var cnt=Array(10).fill(0);
+    while(N>0){
+        var rem=N%10;
+        cnt[rem]++;
+        N=Math.floor(N/10);
+    }
+    for(var i=0;i<10;i++){
+        if(cnt[i]>1){
+            result++
+        }
+    }
+    return result;
+
+}
+var N=7312140905;
+document.write(countRepeatingDigit(N));
+  
+
+
