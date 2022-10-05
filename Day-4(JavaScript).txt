@@ -1,0 +1,131 @@
+                                                                     ASSIGNMENT-4
+                                                                    **************
+
+1) Run the following code & examine the output carefully: 
+ 
+for(var i=1 ; i<10 ; i++) 
+{ 
+    setTimeout(() => { 
+        console.log(i); 
+    }, 1000) 
+} 
+ 
+Refactor the code to produce the following output after 1 second: 
+1 
+2 
+3 
+4 
+5 
+6 
+7 
+8 
+9 
+10 
+
+for(var i=1;i<=0;i++)
+{
+    setTimeout(()=>{
+        console.log(i);
+    },i*3000)
+    console.log(i);
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2) Write a JS function which accepts an array of 10 numbers. The function must return another array which contains only the odd numbers in the source array.
+
+let Array=[98,7,68,54,65,38,23,61,6,9];
+let displayOddNumbers=Array.filter(n=>n%2)
+console.log(displayOddNumbers);
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3) Refactor the JS function created in assignment 2 so that the user can pass the filter condition also to the function. For example, only even numbers, only prime numbers, etc. The condition must NOT be passed as a string
+
+let array=[98,7,68,54,65,38,23,61,6,9];
+let displayOddNumbers=array.filter(n=>n%2!==0)
+console.log(displayOddNumbers);
+
+let displayEvenNumbers=array.filter(n=>n%2===0)
+console.log(displayEvenNumbers);
+
+function filterFunction(array,func){
+    resultArray=[];
+    for(let i=0;i<array.length;i++){
+        if(func(array[i])){
+            resultArray.push(array[i]);
+        }
+    }
+    console.log(resultArray);
+}
+
+console.log('prime number in the input array are:');
+filterFunction(array,x=>{
+    if(x<=1){
+        return false
+    }
+    for(let i=2;i<x;i++){
+        if(x%i==0){
+            return false
+        }
+    }
+    return true
+})
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+4) Consider the following scenario: 
+There are 3 functions, namely, GetVideo(), AddIntro() and AddSummary(). Each method returns a Promise. The Promise when resolved must return a string after 3 seconds like this: 
+GetVideo()        à returns Got Video 
+AddIntro()         à returns Intro Added 
+AddSummary() à returns Summary Added 
+ 
+Invoke the GetVideo() function. The final result must be displayed as: 
+Got Video, Intro Added, Summary Added 
+
+function GetVideo(){
+    return new Promise(()=>{
+        setTimeout(()=>{
+            console.log("get video");
+        },5000)
+    })
+}
+function AddIntro(){
+    return new Promise((resolve)=>{
+        setTimeout(()=>{
+            console.log("Intro added");
+        },5000)
+    })
+}
+function AddSummary(){
+    return new Promise((resolve)=>{
+        setTimeout(()=>{
+            console.log("Summary added");
+        },5000)
+    })
+}
+GetVideo();
+AddIntro();
+AddSummary();
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+5) Rewrite the previous assignment using async and await keywords
+
+async function myfunction(){
+    function GetVideo(){
+        console.log("Got video");
+    }
+    function AddIntro(){
+        return console.log("intro added");
+    }
+    function AddSummary(){
+        return console.log("Summary added");
+    
+    }
+    GetVideo();
+    await AddIntro();
+    AddSummary();
+}
+myfunction();
+console.log("checking the await function");

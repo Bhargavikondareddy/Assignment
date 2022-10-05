@@ -1,0 +1,245 @@
+                                                                      ASSIGNMENT-3
+                                                                     **************
+
+1) Create an HTML page containing two textboxes for inputting the username & password respectively. Add a button titled Sign In. On the button click, invoke a JS function which checks if the username and password are citiustech (case insensitive match) and if so, redirects them to www.google.com in a new window without a menu bar and address bar. If the username and/or password is not citiustech, then an error message in dark red color must be displayed beneath the appropriate textbox displaying a suitable error message.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="Assignment3(1).js"></script>
+</head>
+<body>
+    username: <input type="text" placeholder="Enter user name" id=name>
+    <br><br>
+    password: <input type="password" placeholder="Enter password" id=password>
+    <br><br>
+    <input type="submit" value="sign in" onclick="Login()">
+    <br><br><br>
+    <h3 id='invalidMessage' style="color:red;"></h3>
+</body>
+</html>
+
+function Login(){
+    let username=document.getElementById('name').value;
+    let password=document.getElementById('password').value;
+    let invalidMessage=document.getElementById('invalidMessage');
+
+    if(username==='citiustech' && password==='citiustech'){
+        window.open('https://www.google.com/');
+    }
+    else{
+        invalidMessage.innerHTML='invalid credentials <br>username and password';
+    }
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2) Refactor the previous assignment to include the following: 
+   a.When the user presses the tab key in each textbox, perform the check as mentioned above. 
+   b.Write JS code to validate each key inputted in each textbox and display an error message beneath each textbox if a space character is detected in username or password. 
+   c.As long as the username and password textboxes are empty, disable the button. The button must be enabled only when both textboxes contain text.
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <label for="usrname">UserName:</label>
+    <input type="text" name="usrname" id="usrname">
+    <h2 id="invalidMessage"></h2>
+
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password">
+    <h2 id="invalidMessage1"></h2>
+
+    <input type="submit" value="Sign In" id="button" disabled onclick="loginButton()">
+    <script src="Assignment3(2).js"></script>
+
+</body>
+
+</html>
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3) Create an HTML5 page which contains a textbox. The user will enter an email id in the textbox. Next to the textbox, put a button titled Add Another Email. When the button is clicked, write JS code to add another textbox and a button next to it titled Remove Email. When the button is clicked, the button and the textbox should be removed
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="email" placeholder="Enter email">
+    <input type="button" value="submit" onclick="addEmailButton()">
+    <script src="Assignment3(3).js"></script>
+</body>
+</html>
+
+function addEmailButton(){
+    let textbox=document.createElement("input");
+    textbox.setAttribute("type","email");
+    document.body.appendChild(textbox);
+    textbox.placeholder="enter email"
+    
+    let textbutton=document.createElement("input");
+    textbutton.setAttribute("type","button");
+    textbox.value="remove email";
+
+    document.body.appendChild(textbutton);
+    textbutton.onclick=function(){
+        document.body.removeChild(textbox);
+        document.body.removeChild(textbutton);
+    }
+}
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+4) Create an HTML5 page which displays a dropdown list. The drop down list must contain the following data: 
+   India 
+   Australia 
+   New Zealand 
+   England 
+   When the user selects a country name, write JS code to display the list of cities in another dropdown list. 
+ 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        <label for="myCountryname">Country:</label>
+        <select name="countryName" id="myCountryname">
+            <option value="select">Select Country</option>
+            <option value="India">India</option>
+            <option value="Australia">Australia</option>
+            <option value="Newzealand">Newzealand</option>
+            <option value="England">England</option>
+        </select>
+        <br>
+        <br>
+
+        <select name="indiaName" id="indiaCountry" style="display:none;">
+            <option value="select city">Select city</option>
+            <option value="hyderabad">hyderabad</option>
+            <option value="delhi">delhi</option>
+            <option value="mumbai">mumbai</option>
+            <option value="chennai">chennai</option>
+            <option value="kolkata">kolkata</option>
+        </select>
+
+        <select name="australiaName" id="australiaCountry" style="display:none;">
+            <option value="select city">Select city</option>
+            <option value="hobart">hobart</option>
+            <option value="adelaide">adelaide</option>
+            <option value="brisbane">brisbane</option>
+            <option value="sydney">sydney</option>
+        </select>
+
+        <select name="englandName" id="englandCountry" style="display:none;">
+            <option value="select city">Select city</option>
+            <option value="manchester">manchester</option>
+            <option value="oxford">oxford</option>
+            <option value="Liverpool">Liverpool</option>
+            <option value="London">London</option>
+        </select>
+        <select name="newzealandName" id="newzealandCountry" style="display:none;">
+            <option value="select city">Select city</option>
+            <option value="tauranga">tauranga</option>
+            <option value="lowerhutt">lowerhutt</option>
+            <option value="dunedin">dunedin</option>
+            <option value="napier">napier</option>
+        </select>
+    </form>
+    <script src="Assignment3(4).js"></script>
+</body>
+
+</html>
+
+var countryIndia=document.getElementById("indiaCountry");
+var countryAustralia=document.getElementById("australiaCountry");
+var countryNewzealand=document.getElementById("newzealandCountry");
+var countryEngland=document.getElementById("englandCountry");
+
+document.getElementById("myCountryname").addEventListener("click",function(){
+    let countryName=document.querySelector('#myCountryname').value;
+    if(countryName == "India")
+    {
+        countryIndia.style.display="block";
+        countryAustralia.style.display="none";
+        countryNewzealand.style.display="none";
+        countryEngland.style.display="none";
+    }
+    else if(countryName == "Australia")
+    {
+        countryIndia.style.display="none";
+        countryAustralia.style.display="block";
+        countryNewzealand.style.display="none";
+        countryEngland.style.display="none";
+    }
+    else if(countryName=="Newzealand"){
+        
+        countryIndia.style.display="none";
+        countryAustralia.style.display="none";
+        countryNewzealand.style.display="block";
+        countryEngland.style.display="none";
+    }
+    else if(countryName=="England")
+    {
+        
+        countryIndia.style.display="none";
+        countryAustralia.style.display="none";
+        countryNewzealand.style.display="none";
+        countryEngland.style.display="block";
+    }
+    
+    
+
+});
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+5) Create an HTML5 page which displays an image with the size 200x200 pixels. When the mouse is hovered on the image, the image must zoom to 800x800 pixels. When the mouse is moved out of the image, the image must zoom out to 200x200 pixels
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="pet.jpg" width="200" height="200" id="image">
+    <script src="Assignment3(5).js"></script>
+</body>
+</html>
+
+document.querySelector('#image').addEventListener('mouseover',function(){
+    document.getElementById('image').height="800";
+    document.getElementById('image').weight="800";
+});
+document.querySelector('#image').addEventListener('mouseout',function(){
+    document.getElementById('image').height="200";
+    document.getElementById('image').weight="200";
+});
