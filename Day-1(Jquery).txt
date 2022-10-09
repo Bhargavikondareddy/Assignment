@@ -1,0 +1,159 @@
+1.Create an HTML5 page which contains a textbox. User enters an email id in the textbox. Create a <div> element below the textbox. Create a button titled Show Email. When the button is clicked, the entered email must be displayed inside the <div> element. 
+    a.Using jQuery, attach a click event handler to the button. 
+    b.Using jQuery, get the value of the textbox. 
+    c.Using jQuery, display the email inside the <div> element.
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+<body>
+    Email : <input type="text" id="demo" placeholder="Enter email id"><br><br>
+    <button type="button" id="btn"> Show Email</button><br><br>
+    <div id='d' style="height: 20px; width:400px ;background-color:rgb(188, 225, 123); padding: 10px;"> </div>
+    <script>
+        $(function () {
+            $('#btn').click(function () {
+                // let res = document.getElementById('demo').value;
+                var v = $('#demo').val();
+                $('#d').text(v);
+            })
+        })
+
+    </script>
+</body>
+</html>
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+2.Create an HTML5 page as follows: 
+  a.Two empty <div> elements. The id of each must be div1 and div2 respectively. 
+  b.Two textboxes without ids. 
+  c.Two textareas without ids. 
+  d.A button titled Apply Style to TextBoxes. When this button is clicked, draw a red border around each textarea. 
+  e.A button titled Apply Style to first div . When this button is clicked, write some text only inside the first <div> element. 
+  f.A button titled Say Hello. When this button is clicked, each textbox and textarea must contain the text HELLO.  -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+<body>
+
+    <input type="text"><br><br>
+    <input type="text"><br><br>
+    <div id="div1" style="height: 20px; width:400px ;background-color:rgb(172, 225, 123); padding: 10px;"></div><br><br>
+    <div id="div2" style="height: 20px; width:400px ;background-color:rgb(138, 247, 236); padding: 10px;"></div><br><br>
+    <div id="div3">
+        <textarea rows="5" cols="100"></textarea><br><br>
+        <textarea rows="5" cols="100"></textarea><br><br>
+    </div>
+
+    <button type="button" id="btn1">Apply Style to TextBoxes</button>
+    <button type="button" id="btn2">Apply Style to first div </button>
+    <button type="button" id="btn3">Say Hello </button>
+
+    <script>
+        $(function () {
+            $('#btn1').click(function () {
+                $('textarea').css({ "border": "solid 3px red" });
+            })
+        })
+
+        $(function () {
+            $('#btn2').click(function () {
+                $('#div1').text('This is first div.');
+            });
+        });
+
+        $(function () {
+            $('#btn3').click(function () {
+                $('textarea').text('Hello!');
+            });
+        });
+    </script>
+</body>
+</html>
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3.Create an HTML5 page which contains a hyperlink. Using jQuery, write code to open Google’s home page in another window when the mouse is hovered over the link. 
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+<body>
+    <h4>Take Cursor on the link to open Google Homepage..</h4>
+    <p id="demo">https://www.google.com</p>
+    <!-- <a id="demo" href="https://www.google.com">https://www.google.com</a> -->
+    <script>
+        $(function () {
+            $('#demo').mouseover(function () {
+                window.open("https://www.google.com");
+                
+            })
+        })
+    </script>
+</body>
+</html>
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+4.Create a style class and name it error, give its border color as red and background color as yellow. Apply this class to a text box when the focus is moved out of it and if the entered data is more than 10 
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <style>
+        .error {
+            border-color: red;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="demo" placeholder="enter a number">
+    <script>
+        $(function () {
+            $('#demo').focusout(function () {
+                $(this).addClass("error");
+            });
+        });
+    </script>
+</body>
+</html>
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+5.Create an HTML5 page. The page contains a textbox and a button titled Login. Disable the button initially using jQuery. The moment something is typed in the textbox, enable the button. Disable it again if the textbox is empty.  
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+
+<body>
+    <input type="text" id="txt" onkeyup="manage(this)" />
+
+    <button id="btSubmit" disabled ="true" >Login</button>
+
+<script>
+    function manage(txt) {
+        var bt = document.getElementById('btSubmit');
+        if (txt.value != '') {
+            bt.disabled = false;
+        }
+        else {
+            bt.disabled = true;
+        }
+    }
+</script>
+</body>
+
+</html>
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
