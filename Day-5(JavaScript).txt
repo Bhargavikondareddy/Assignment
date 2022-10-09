@@ -1,0 +1,296 @@
+                                                                         ASSIGNMENT-5
+                                                                        **************
+
+1.Create a JSON file with some sample data & save it on your local drive. Using XmlHttpRequest, display information from the file in a table format.
+
+<!DOCTYPE html>
+<html>
+  <body>
+    <h2>Displaying json in table format</h2>
+
+    <button type="button" onclick="loadXMLDoc()">Show Content</button>
+    <table id="table_body"></table>
+
+    <script>
+      function loadXMLDoc() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "sample.json", true);
+        xhttp.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+            var json = JSON.parse(xhttp.responseText);
+            createTable(json);
+          } else {
+            console.log("Error");
+          }
+        };
+
+        xhttp.send();
+      }
+      function createTable(json) {
+        var tableBody = document.getElementById("table_body");
+
+        // Populate table
+        json.forEach((row) => {
+          var tr = document.createElement("tr");
+
+          Object.keys(row).forEach((cell) => {
+            var td = document.createElement("td");
+            td.textContent = row[cell];
+            tr.appendChild(td);
+          });
+
+          tableBody.appendChild(tr);
+        });
+      }
+    </script>
+  </body>
+</html>
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3.Create an HTML5 page containing a textbox and a button titled Get Details. The user will enter a user id in the textbox. On the button click, make a GET request using the fetch API to the following URL: 
+https://jsonplaceholder.typicode.com/users/ 
+Pass the user id entered in the textbox as a query string & display the information about the user in a <div> element.  
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Get method</title>
+  </head>
+  <body>
+    <label for="site-search">Enter a user ID:</label>
+    <input type="search" id="searchId" name="q"/>
+    <br /><br />
+    <button onclick="getD()">Get details</button>
+    <br /><br/>
+    <div id="d"></div>
+    <script>
+      function getD() {
+        let uname = document.getElementById("searchId").value;
+        data = fetch("https://jsonplaceholder.typicode.com/users/" + uname)
+          .then((response) => response.json())
+          .then((json) => {
+            document.getElementById("d").innerHTML = JSON.stringify(json);
+          });
+      }
+    </script>
+  </body>
+</html>
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+4.Create an HTML5 page. Input the user id, name, username and email in different textboxes. On a button click, write a JS function which makes a POST request to the URL mentioned in assignment 3. Check by hitting the same URL to see if the new record was added. 
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Get method</title>
+  </head>
+  <body>
+    <label for="search">Enter a user ID:</label>
+    <input type="search" id="searchId" name="q" />
+    <br /><br />
+    <label for="name-search">Enter name:</label>
+    <input type="search" id="Na" name="q" />
+    <br /><br />
+    <label for="Username-search">Enter a user Name:</label>
+    <input type="search" id="userName" name="q" />
+    <br /><br />
+
+    <button onclick="getD()">Post details</button>
+    <br /><br />
+    <div id="d"></div>
+    <script>
+      function getD() {
+        let uId = document.getElementById("searchId").value;
+        let nam = document.getElementById("Na").value;
+        let Uname = document.getElementById("userName").value;
+        //console.log(`${uId} ${nam} ${Uname}`);
+        //let newUser = { ID: uId, Name: nam, Username: Uname };
+        fetch("https://jsonplaceholder.typicode.com/users/", {
+          method: "POST",
+          body: JSON.stringify({
+            id: uId,
+            name: nam,
+            username: Uname,
+          }),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        })
+          .then((response) => response.json())
+          .then((json) => {
+            document.getElementById("d").innerHTML = JSON.stringify(json);
+          });
+
+        fetch("https://jsonplaceholder.typicode.com/users/" + uId) //resource will not be really updated on the server but it will be faked as if and here it return as 404 error and result goona display as empty object
+          .then((response) => response.json())
+          .then((json) => {
+            document.getElementById("d").innerHTML = JSON.stringify(json);
+          });
+      }
+    </script>
+  </body>
+</html>
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+5.Add another button which makes a PUT request to the same URL. In this case, the name, username or email might be modified. Pass the entered id as a query string. Check by hitting the same URL to see if the record was modified or not. 
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Get method</title>
+  </head>
+  <body>
+    <label for="search">Enter a user ID:</label>
+    <input type="search" id="searchId" name="q" />
+    <br /><br />
+    <label for="name-search">Enter name:</label>
+    <input type="search" id="Na" name="q" />
+    <br /><br />
+    <label for="Username-search">Enter a user Name:</label>
+    <input type="search" id="userName" name="q" />
+    <br /><br />
+
+    <button onclick="getD()">Post details</button>
+    <br />
+    <button onclick="getM()">click to check if data been modified</button>
+    <br /><br />
+    <div id="d"></div>
+    <div id="m"></div>
+    <script>;
+        function getD() {
+        let uId = document.getElementById("searchId").value;
+        let nam = document.getElementById("Na").value;
+        let Uname = document.getElementById("userName").value;
+        //console.log(`${uId} ${nam} ${Uname}`);
+        //let newUser = { ID: uId, Name: nam, Username: Uname };
+        fetch("https://jsonplaceholder.typicode.com/users/", {
+          method: "POST",
+          body: JSON.stringify({
+            id: uId,
+            name: nam,
+            username: Uname
+          }),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        })
+          .then((response) => response.json())
+          .then((json) => {
+            document.getElementById("d").innerHTML = JSON.stringify(json);
+          });
+        }
+
+        //resource will not be really updated on the server but it will be faked as if and here it return as 404 error and result goona display as empty object
+        function getM(){
+        let uId = document.getElementById("searchId").value;
+        let nam = document.getElementById("Na").value;
+        let Uname = document.getElementById("userName").value;
+        fetch("https://jsonplaceholder.typicode.com/users/"+uId, {
+          method: "PUT",
+          body: JSON.stringify({
+            id: uId,
+            name: nam,
+            username: Uname
+          }), 
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        })
+          .then((response) => response.json())
+          .then((json) => {
+            document.getElementById("m").innerHTML = JSON.stringify(json);
+          })
+        };
+        
+    </script>
+  </body>
+</html>
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+6.Add another button which makes a DELETE request to the same URL. In this case, the request must delete the record with the specified id entered in the textbox. Check by hitting the same URL to see if the record was deleted or not
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Get method</title>
+  </head>
+  <body>
+    <label for="search">Enter a user ID:</label>
+    <input type="search" id="searchId" name="q" />
+    <br /><br />
+    <label for="name-search">Enter name:</label>
+    <input type="search" id="Na" name="q" />
+    <br /><br />
+    <label for="Username-search">Enter a user Name:</label>
+    <input type="search" id="userName" name="q" />
+    <br /><br />
+
+    <button onclick="getD()">Post details</button>
+    <br /><br />
+    <button onclick="getM()">click to check if data been modified</button>
+    <br /><br />
+    <button onclick="getDel()">click to delete the Content</button>
+    <br /><br />
+    <div id="d"></div>
+    <script>
+      function getD() {
+        let uId = document.getElementById("searchId").value;
+        let nam = document.getElementById("Na").value;
+        let Uname = document.getElementById("userName").value;
+        //console.log(`${uId} ${nam} ${Uname}`);
+        //let newUser = { ID: uId, Name: nam, Username: Uname };
+        fetch("https://jsonplaceholder.typicode.com/users/", {
+          method: "POST",
+          body: JSON.stringify({
+            id: uId,
+            name: nam,
+            username: Uname,
+          }),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        })
+          .then((response) => response.json())
+          .then((json) => {
+            document.getElementById("d").innerHTML = JSON.stringify(json);
+          });
+      }
+
+      //resource will not be really updated on the server but it will be faked as if and here it return as 404 error and result goona display as empty object
+      function getM() {
+        let uId = document.getElementById("searchId").value;
+        let nam = document.getElementById("Na").value;
+        let Uname = document.getElementById("userName").value;
+        fetch("https://jsonplaceholder.typicode.com/users/" + uId, {
+          method: "PUT",
+          body: JSON.stringify({
+            id: uId,
+            name: nam,
+            username: Uname,
+          }),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        })
+          .then((response) => response.json())
+          .then((json) => {
+            document.getElementById("d").innerHTML = JSON.stringify(json);
+          });
+      }
+
+      function getDel() {
+        let uId = document.getElementById("searchId").value;
+        fetch("https://jsonplaceholder.typicode.com/users" + uId, {
+          method: "DELETE",
+        })
+          .then((response) => response.json())
+          .then((json) => {
+            document.getElementById("d").innerHTML = JSON.stringify(json);
+          });
+      }
+    </script>
+  </body>
+</html>
+
