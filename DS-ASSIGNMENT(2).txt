@@ -1,0 +1,273 @@
+                                                                     DS-ASSIGNMENT-2
+                                                                    *****************
+1) Implement bubble sort algorithm to sort a numeric array in JavaScript. 
+Link for hint: https://www.geeksforgeeks.org/bubble-sort-algorithms-by-using-javascript/ 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Bubble sort Implementation using Javascript
+
+
+// Creating the bblSort function
+function bblSort(arr){
+	
+    for(var i = 0; i < arr.length; i++){
+        
+    // Last i elements are already in place
+    for(var j = 0; j < ( arr.length - i -1 ); j++){
+        
+        // Checking if the item at present iteration
+        // is greater than the next iteration
+        if(arr[j] > arr[j+1]){
+            
+        // If the condition is true then swap them
+        var temp = arr[j]
+        arr[j] = arr[j + 1]
+        arr[j+1] = temp
+        }
+    }
+    }
+    // Print the sorted array
+    console.log(arr);
+    }
+    
+    
+    // This is our unsorted array
+    var arr = [43, 56, 52, 67, 15, 6, 205, 50];
+    
+    
+    // Now pass this array to the bblSort() function
+    bblSort(arr);
+    
+    </script>
+</body>
+</html>
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2) Implement insertion sort algorithm to sort a numeric array in JavaScript. 
+Link for hint: https://www.w3resource.com/javascript-exercises/searching-and-sorting-algorithm/searching-and-sorting-algorithm-exercise-4.php
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const insertionSort = arr =>
+  arr.reduce((acc, x) => {
+    if (!acc.length) return [x];
+    acc.some((y, j) => {
+      if (x <= y) {
+        acc.splice(j, 0, x);
+        return true;
+      }
+      if (x > y && j === acc.length - 1) {
+        acc.splice(j + 1, 0, x);
+        return true;
+      }
+      return false;
+    });
+    return acc;
+  }, []);
+ 
+console.log(insertionSort([60, 33, 14, 10]));
+
+    </script>
+</body>
+</html>
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3) Implement linear search algorithm in JavaScript. 
+Link for hint: https://www.oodlestechnologies.com/blogs/linear-search-implementation-using-javascript/
+
+<html>
+<head>
+<title>linear</title>
+<script type="text/javascript">
+    function linear()
+{
+    var n=parseInt(prompt("Enter the size of an array"));
+    var a=new Array(n);
+    var t=0;
+    for(var i=0; i<a.length; i++)
+    {
+        a[i]=parseInt(prompt("Enter array elements"));
+    }
+    var k=parseInt(prompt("Enter the key element to search: "));
+    for(var i=0; i<a.length; i++)
+    {
+        if(k==a[i])
+        {
+            t=1;
+            break;
+        }
+    }
+    if(t==1)
+    {
+        document.writeln("Element "+a[i]+ " Found at Position:"+i);
+    }
+    else
+    {
+        document.writeln("Element Not Found");
+    }
+}
+</script>
+</head>
+<body  onLoad="linear()"></body>
+</html>
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+4) Implement binary search algorithm in JavaScript. 
+Link for hint: https://medium.com/@jeffrey.allen.lewis/javascript-algorithms-explained-binary-search-25064b896470
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var a = [
+    11,
+    22,
+    41,
+    60,
+    10,
+    100,
+    0,
+    10000,
+    32
+];
+
+a.sort(function (a, b) {
+    return a - b;
+});
+console.log('a,', a);
+
+function binarySearch(arr, i) {
+    var mid = Math.floor(arr.length / 2);
+    console.log(arr[mid], i);
+    
+    if (arr[mid] === i) {
+        console.log('match', arr[mid], i);
+        return arr[mid];
+    } else if (arr[mid] < i && arr.length > 1) {
+        console.log('mid lower', arr[mid], i);
+        binarySearch(arr.splice(mid, Number.MAX_VALUE), i);
+    } else if (arr[mid] > i && arr.length > 1) {
+        console.log('mid higher', arr[mid], i);
+        binarySearch(arr.splice(0, mid), i);
+    } else {
+        console.log('not here', i);
+        return -1;
+    }
+    
+}
+var result = binarySearch(a, 100);
+console.log(result);
+        </script>									
+        
+</body>
+</html>
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+5) Implement set operations in JavaScript. 
+Link for hint: https://www.programiz.com/javascript/examples/set-operations
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // perform union operation
+function union(a, b) {
+    let unionSet = new Set(a);
+    for (let i of b) {
+        unionSet.add(i);
+    }
+    return unionSet
+}
+
+const setA = new Set(['bhargavi', 'akhila', 'tarun']);
+const setB = new Set(['hema', 'bhargavi', 'saisree']);
+
+const result1 = union(setA, setB);
+
+console.log(result1);
+
+// perform intersection operation
+function intersection(setC, setD) {
+    let intersectionSet = new Set();
+
+    for (let i of setD) {
+        if (setC.has(i)) {
+            intersectionSet.add(i);
+        }
+    }
+    return intersectionSet;
+}
+
+const setE = new Set(['apple', 'mango', 'orange']);
+const setF = new Set(['grapes', 'apple', 'banana']);
+
+const result2 = intersection(setE, setF);
+
+console.log(result2);
+
+// perform difference operation
+function difference(setG, setH) {
+    let differenceSet = new Set(setG)
+    for (let i of setH) {
+        differenceSet.delete(i)
+    }
+    return differenceSet
+}
+
+const setG = new Set(['ali', 'sanath', 'pinky']);
+const setH = new Set(['sowjanya', 'ali', 'keerthi']);
+
+const result3 = difference(setG, setH);
+
+console.log(result3);
+
+// perform subset operation
+function subset(setI, setJ) {
+    for (let i of setJ) {
+        if (!setI.has(i)) {
+            return false
+        }
+    }
+    return true
+}
+
+// two sets of fruits
+const setI = new Set(['red', 'blue', 'orange']);
+const setJ = new Set(['red', 'orange']);
+
+const result4 = subset(setI, setJ);
+
+console.log(result4);
+    </script>
+</body>
+</html>
