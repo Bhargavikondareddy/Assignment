@@ -1,0 +1,469 @@
+                                         Assignment-1
+
+1.Implement a linked list using JavaScript. 
+Link for hint : https://www.c-sharpcorner.com/article/linkedlist-implementation-in-javascript/ 
+ 
+Create an HTML5 page and allow the user to input a node’s value. Create buttons to add a node, 
+delete a node & print the linked list. 
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="Node">
+            <input type="text" id="index" value="">
+            <input type="text" id="insertvalue" value="">
+        <input type="button" value="addbutton" placeholder="addbutton" id="addnode" required>
+        <br>
+    <input type="text" id="value" value="">
+        <input type="button" value="deletebutton" placeholder="deletebutton" id="deletenode" required><br>
+
+        <script>
+            class Node {
+    constructor(data, next = null)
+    {
+        this.data = data;
+        this.next = next;
+    }
+}
+
+class LinkedList {
+    constructor() {
+        this.head = null;
+        this.tail = null;
+        this.size = 0;
+    }
+
+    add(data) {
+        if(this.head == null){
+            this.head = new Node(data);
+            this.tail = this.head;
+            this.size++;
+        }
+        else{
+            this.tail.next = new Node(data);
+            this.tail = this.tail.next;
+            this.size++;
+        }
+    }
+
+    remove(data)
+    {
+        let tempHead = this.head;
+        let prevNode;
+        while(tempHead.data !== data){
+            prevNode = tempHead;
+            tempHead = tempHead.next;
+        }
+        prevNode.next = tempHead.next;
+        this.size--;
+    }
+
+    print() {
+        let currentNode = this.head;
+
+        while(currentNode) {
+            console.log(currentNode.data);
+            currentNode = currentNode.next;
+        }
+    }
+}
+
+let item = new LinkedList();
+
+$("#add").on('click', function() {
+    item.add(parseInt(prompt("Enter a data to be inserted into the Linked List: ")));
+})
+$("#del").on('click', function() {
+    item.remove(parseInt(prompt("Enter a data to be removed from the Linked List: ")));
+})
+
+$("#prnt").on('click', function() {
+    item.print();
+})
+        </script>
+    </div>
+</body>
+</html>
+
+class Node {
+    constructor(data, next = null)
+    {
+        this.data = data;
+        this.next = next;
+    }
+}
+
+class Node {
+    constructor(data, next = null)
+    {
+        this.data = data;
+        this.next = next;
+    }
+}
+
+class LinkedList {
+    constructor() {
+        this.head = null;
+        this.tail = null;
+        this.size = 0;
+    }
+
+    add(data) {
+        if(this.head == null){
+            this.head = new Node(data);
+            this.tail = this.head;
+            this.size++;
+        }
+        else{
+            this.tail.next = new Node(data);
+            this.tail = this.tail.next;
+            this.size++;
+        }
+    }
+
+    remove(data)
+    {
+        let tempHead = this.head;
+        let prevNode;
+        while(tempHead.data !== data){
+            prevNode = tempHead;
+            tempHead = tempHead.next;
+        }
+        prevNode.next = tempHead.next;
+        this.size--;
+    }
+
+    print() {
+        let currentNode = this.head;
+
+        while(currentNode) {
+            console.log(currentNode.data);
+            currentNode = currentNode.next;
+        }
+    }
+}
+
+let item = new LinkedList();
+
+$("#add").on('click', function() {
+    item.add(parseInt(prompt("Enter a data to be inserted into the Linked List: ")));
+})
+$("#del").on('click', function() {
+    item.remove(parseInt(prompt("Enter a data to be removed from the Linked List: ")));
+})
+
+$("#prnt").on('click', function() {
+    item.print();
+})
+
+
+
+
+-------------------------------------------------------
+
+2.Implement a Stack using JavaScript. 
+Link for hint: https://www.freecodecamp.org/news/stack-5404d9735f88/ 
+ 
+Create an HTML5 page and allow the user to input a value to be added to the stack. Create buttons to implement push, pop operations 
+& to prin the stack. The stack must be printed in a table format consisting of only one column. As the user performs push and pop operations, the table must reflect the same.
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+<body>
+    <button type="submit" id="push">Push</button>
+    <button type="submit" id="pop">Pop</button>
+    <button type="submit" id="print">Print</button>
+    <br>
+    <br>
+    <div id="tablediv">
+        <table border="5">
+            <thead>
+                <tr>
+                    <th>Stack</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+<script>
+    class Stack {
+    constructor() {
+        this.items = [];
+        let top = -1;
+    }
+
+    push(element)
+    {
+        this.items.push(element);
+    }
+
+    pop()
+    {
+        if(this.items.length == 0)
+        {
+            return "Stack Underflow";
+        }
+        return this.items.pop();
+    }
+
+    print() 
+    {
+        var str = "";
+        for(let i = 0; i < this.items.length; i++)
+        {
+            str += this.items[i] + " ";
+        }
+        console.log(str);
+    }
+}
+
+let stacker = new Stack();
+
+$("#push").on('click', function() {
+    stacker.push(prompt("Enter a value to the Stack"));
+    newTableData = `<tr> <td> ${stacker.items} </td> </tr>`;
+    tableRow = $("table tbody");
+    tableRow.append(newTableData);
+})
+
+$("#pop").on('click', function() {
+    stacker.pop();
+    remTableData = `<tr> <td> ${stacker.items} </td> </tr>`;
+    tableRow = $("table tbody");
+    tableRow.append(remTableData);
+})
+
+$("#print").on('click', function() {
+    stacker.print();
+})
+
+
+</script>
+</body>
+</html>
+
+
+class Stack {
+    constructor() {
+        this.items = [];
+        let top = -1;
+    }
+
+    push(element)
+    {
+        this.items.push(element);
+    }
+
+    pop()
+    {
+        if(this.items.length == 0)
+        {
+            return "Stack Underflow";
+        }
+        return this.items.pop();
+    }
+
+    print() 
+    {
+        var str = "";
+        for(let i = 0; i < this.items.length; i++)
+        {
+            str += this.items[i] + " ";
+        }
+        console.log(str);
+    }
+}
+
+let stacker = new Stack();
+
+$("#push").on('click', function() {
+    stacker.push(prompt("Enter a value to the Stack"));
+    newTableData = `<tr> <td> ${stacker.items} </td> </tr>`;
+    tableRow = $("table tbody");
+    tableRow.append(newTableData);
+})
+
+$("#pop").on('click', function() {
+    stacker.pop();
+    remTableData = `<tr> <td> ${stacker.items} </td> </tr>`;
+    tableRow = $("table tbody");
+    tableRow.append(remTableData);
+})
+
+$("#print").on('click', function() {
+    stacker.print();
+})
+--------------------------------------------------
+
+3.Implement a Queue using JavaScript. 
+Link for hint: https://betterprogramming.pub/implementing-a-queue-in-javascript-59b332c7ff0d 
+ 
+Implement this similar to the stack implementation in the previous assignment.
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+<body>
+    <button type="submit" id="add">Add</button>
+    <button type="submit" id="del">Remove</button>
+    <button type="submit" id="prnt">Print</button>
+    <br>
+    <br>
+    <div id="tablediv">
+        <table border="5">
+            <thead>
+                <tr>
+                    <th>Queue</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <script >
+        class Queue {
+    constructor()
+    {
+        this.data = [];
+        this.rear = 0;
+        this.size = 10;
+    }
+
+    insert(element) {
+        if(this.rear < this.size)
+        {
+            this.data[this.rear] = element;
+            this.rear = this.rear + 1;        
+        }
+    }
+
+    isEmpty() {
+        return this.rear === 0;
+    }
+
+    delete()
+    {
+        if(this.isEmpty() === false)
+        {
+            this.rear = this.rear - 1;
+            return this.data.shift();
+        }
+    }
+
+    print()
+    {
+        for(let i = 0; i < this.rear; i++)
+        {
+            console.log(this.data[i]);
+        }
+    }
+}
+
+let q = new Queue();
+
+$("#add").on('click', function() {
+    q.insert(prompt("Enter a value to the Queue"));
+    newTableData = `<tr> <td> ${q.data} </td> </tr>`;
+    tableRow = $("table tbody");
+    tableRow.append(newTableData);
+})
+
+$("#del").on('click', function() {
+    q.delete();
+    remTableData = `<tr> <td> ${q.data} </td> </tr>`;
+    tableRow = $("table tbody");
+    tableRow.append(remTableData);
+})
+
+$("#prnt").on('click', function() {
+    q.print();
+})
+    </script>
+</body>
+</html>
+
+
+
+
+class Queue {
+    constructor()
+    {
+        this.data = [];
+        this.rear = 0;
+        this.size = 10;
+    }
+
+    insert(element) {
+        if(this.rear < this.size)
+        {
+            this.data[this.rear] = element;
+            this.rear = this.rear + 1;        
+        }
+    }
+
+    isEmpty() {
+        return this.rear === 0;
+    }
+
+    delete()
+    {
+        if(this.isEmpty() === false)
+        {
+            this.rear = this.rear - 1;
+            return this.data.shift();
+        }
+    }
+
+    print()
+    {
+        for(let i = 0; i < this.rear; i++)
+        {
+            console.log(this.data[i]);
+        }
+    }
+}
+
+let q = new Queue();
+
+$("#add").on('click', function() {
+    q.insert(prompt("Enter a value to the Queue"));
+    newTableData = `<tr> <td> ${q.data} </td> </tr>`;
+    tableRow = $("table tbody");
+    tableRow.append(newTableData);
+})
+
+$("#del").on('click', function() {
+    q.delete();
+    remTableData = `<tr> <td> ${q.data} </td> </tr>`;
+    tableRow = $("table tbody");
+    tableRow.append(remTableData);
+})
+
+$("#prnt").on('click', function() {
+    q.print();
+})
+
+
