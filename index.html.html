@@ -1,0 +1,40 @@
+<!--4.Create an HTML5 page which inputs the following details:
+a. userid à must be a textbox
+b. title à must be a textbox
+c. completed à must be a checkbox
+Make a jQuery POST request to the above-mentioned URL & check if the record as been added.-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+
+<body>
+    userid <input type="text" id="userid">
+    title <input type="text" id="title">
+    completed <input type="text" id="completed">
+    <button type="submit" id="poster">Post</button>
+</body>
+<script>
+    $("#poster").on('click', function () {
+        $.post('https://jsonplaceholder.typicode.com/todos',
+            {
+                userid: $("#userid").val(),
+                title: $("#title").val(),
+                completed: $("#completed").val(),
+            },
+            function (res) {
+                console.log(res.userid);
+                console.log(res.title);
+                console.log(res.completed);
+            })
+    })
+</script>
+
+</html>
